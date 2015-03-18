@@ -13,8 +13,8 @@ print 'distance measuring in progress'
 
 while True:
 
-    gpio.setup(trig,gpio.OUT)
-    gpio.setup(echo.gpio.IN)
+    gpio.setup(trig, gpio.OUT)
+    gpio.setup(echo, gpio.IN)
 
     gpio.output(trig,False)
 
