@@ -51,6 +51,5 @@ class Ultrasound():
         else:
             return False
 
-gpio.cleanup()
 
 
