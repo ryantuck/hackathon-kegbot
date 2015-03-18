@@ -62,7 +62,7 @@ ultrasoundThread = threading.Thread(target=ultrasoundStuff)
 
 flaskThread.daemon = True
 flowThread.daemon = True
-ultrasoundThread = True
+ultrasoundThread.daemon = True
 
 threads.append(flaskThread)
 threads.append(flowThread)
