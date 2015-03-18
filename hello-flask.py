@@ -11,6 +11,7 @@ last_pour_val = None
 ultra_sound_val = None
 
 def ultrasoundStuff():
+    global ultra_sound_val
     ultra_sound_val = ultrasound.checkForHuman()
 
 
@@ -43,6 +44,7 @@ def flow_stuff():
         right_pour = right_meter.getFormattedThisPour()
         right_meter.thisPour = 0.0
 
+    global last_pour_val
     last_pour_val = {left_beer: left_pour, right_beer: right_pour}
 
 
