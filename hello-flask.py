@@ -7,6 +7,10 @@ import RPi.GPIO as GPIO
 ultrasound = Ultrasound()
 app = Flask(__name__)
 
+total_poured_left = 0
+total_poured_right = 0
+
+
 
 def ultrasoundStuff():
     return ultrasound.checkForHuman()
@@ -40,6 +44,11 @@ def flow_stuff():
     if right_meter.thisPour > 0.23 and currentTime - right_meter.lastClick > 5000:
         right_pour = right_meter.getFormattedThisPour()
         right_meter.thisPour = 0.0
+    
+    global total_poured_left
+    global total_poured_right
+    total_poured_left += left_pour
+    total_poured_right += right_pour
 
     return {left_beer: left_pour, right_beer: right_pour}
 
@@ -56,6 +65,13 @@ right_meter = FlowMeter('metric', 'Bengali Tiger') #gpio 27
 GPIO.add_event_detect(17, GPIO.RISING, callback=tick_left_meter, bouncetime=20) # left tap
 GPIO.add_event_detect(27, GPIO.RISING, callback=tick_right_meter, bouncetime=20) # right tap
 
+def getBestBeer():
+    if total_poured_left > total_poured_right:
+        return left_beer.beverage
+    else:
+        return right_beer.beverage
+
+
 @app.route("/")
 def measure():
 
@@ -70,7 +86,8 @@ def measure():
 def metrics_json():
     return jsonify({
         'last_pour': flow_stuff(),
-        'ultrasound': ultrasoundStuff()
+        'ultrasound': ultrasoundStuff(),
+        'best_beer': getBestBeer()
     })
 
 if __name__ == '__main__':
