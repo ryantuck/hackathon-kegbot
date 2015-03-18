@@ -16,7 +16,7 @@ GPIO.setup(27,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 fm = FlowMeter('metric', 'beer')
 fm2 = FlowMeter('metric', 'root beer')
 
-# Beer, on Pin 23.
+# Beer, on Pin 23
 def doAClick(channel):
   print "Do a click 1 called"
   currentTime = int(time.time() * FlowMeter.MS_IN_A_SECOND)

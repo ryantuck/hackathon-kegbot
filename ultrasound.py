@@ -6,41 +6,44 @@ import time
 
 gpio.setmode(gpio.BCM)
 
-trig = 23
-echo = 24
+class Ultrasound():
 
-print 'distance measuring in progress'
+    def __init__(self):
 
-while True:
+        # define pins
+        self.trig = 23
+        self.echo = 24
 
-    gpio.setup(trig,gpio.OUT)
-    gpio.setup(echo.gpio.IN)
+    def iterate(self):
 
-    gpio.output(trig,False)
+        gpio.setup(self.trig,gpio.OUT)
+        gpio.setup(self.echo.gpio.IN)
 
-    print 'waiting for sensor to settle'
+        gpio.output(self.trig,False)
 
-    time.sleep(2)
+        print 'waiting for sensor to settle'
 
-    gpio.output(trig,True)
+        time.sleep(2)
 
-    time.sleep(0.0001)
+        gpio.output(self.trig,True)
 
-    gpio.output(trig,False)
+        time.sleep(0.0001)
 
-    while gpio.input(echo) == 0:
-        pulse_start = time.time()
+        gpio.output(self.trig,False)
 
-    while gpio.input(echo) == 1:
-        pulse_end = time.time()
+        while gpio.input(self.echo) == 0:
+            pulse_start = time.time()
 
-    pulse_duration = pulse_end - pulse_start
+        while gpio.input(self.echo) == 1:
+            pulse_end = time.time()
 
-    distance = pulse_duration * 17150
-    distance = round(distance,2)
+        pulse_duration = pulse_end - pulse_start
 
-    print 'distance: ', distance, 'cm'
+        distance = pulse_duration * 17150
+        distance = round(distance,2)
 
-    GPIO.cleanup()
+        print 'distance: ', distance, 'cm'
+
+        GPIO.cleanup()
 
 
