@@ -31,7 +31,6 @@ class FlowMeter():
 
   def update(self, currentTime):
     self.clicks += 1
-    print self.clicks
     # get the time delta
     self.clickDelta = max((currentTime - self.lastClick), 1)
     # calculate the instantaneous speed

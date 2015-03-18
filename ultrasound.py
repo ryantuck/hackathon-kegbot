@@ -44,6 +44,6 @@ class Ultrasound():
 
         print 'distance: ', distance, 'cm'
 
-        GPIO.cleanup()
+gpio.cleanup()
 
 
