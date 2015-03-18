@@ -42,6 +42,6 @@ while True:
 
     print 'distance: ', distance, 'cm'
 
-    gpio.cleanup()
+gpio.cleanup()
 
 
