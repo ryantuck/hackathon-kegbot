@@ -8,6 +8,9 @@ import RPi.GPIO as GPIO
 ultrasound = Ultrasound()
 app = Flask(__name__)
 
+last_pour_val = None
+ultra_sound_val = None
+
 @app.route('/')
 def hello():
     return 'hello world!'
@@ -19,7 +22,7 @@ def flaskStuff():
 
 
 def ultrasoundStuff():
-    ultrasound.checkForHuman()
+    ultra_sound_val = ultrasound.checkForHuman()
 
 
 def tick_left_meter(channel):
@@ -51,7 +54,7 @@ def flow_stuff():
         right_pour = right_meter.getFormattedThisPour()
         right_meter.thisPour = 0.0
 
-    return {left_beer: left_pour, right_beer: right_pour}
+    last_pour_val = {left_beer: left_pour, right_beer: right_pour}
 
 
 
@@ -90,8 +93,8 @@ def measure():
     ultrasound = {"person": ultrasoundStuff}
 
     templateData = {
-    'last_pour' : flow,
-    'ultrasound' : ultrasound
+    'last_pour' : last_pour_val,
+    'ultrasound' : ultra_sound_val
     }
 
     return render_template('temp.html', **templateData)
