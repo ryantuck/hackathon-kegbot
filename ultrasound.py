@@ -18,7 +18,7 @@ class Ultrasound():
     def checkForHuman(self):
 
         gpio.setup(self.trig,gpio.OUT)
-        gpio.setup(self.echo.gpio.IN)
+        gpio.setup(self.echo,gpio.IN)
 
         gpio.output(self.trig,False)
 
