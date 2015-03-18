@@ -51,7 +51,7 @@ def flow_stuff():
         right_pour = right_meter.getFormattedThisPour()
         right_meter.thisPour = 0.0
 
-    return {left_beer: left_pour, right_beer.beverage: right_pour}
+    return {left_beer: left_pour, right_beer: right_pour}
 
 
 
