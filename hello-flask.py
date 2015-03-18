@@ -46,12 +46,12 @@ def flow_stuff():
     if right_meter.thisPour > 0.23 and currentTime - right_meter.lastClick > 5000:
         right_pour = right_meter.getFormattedThisPour()
         right_meter.thisPour = 0.0
+        beer_count = beer_count + 1
     
     global total_poured_left
     global total_poured_right
     total_poured_left += left_pour
     total_poured_right += right_pour
-    beer_count = beer_count + 1
 
     return {left_beer: left_pour, right_beer: right_pour}
 
