@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from ultrasound import *
 from flowmeter import *
 import RPi.GPIO as GPIO
@@ -68,10 +68,10 @@ def measure():
 
 @app.route("/metrics.json")
 def metrics_json():
-    return {
+    return jsonify({
         'last_pour': flow_stuff(),
         'ultrasound': ultrasoundStuff()
-    }
+    })
 
 if __name__ == '__main__':
         app.run(host='0.0.0.0', port=80, debug=True)
