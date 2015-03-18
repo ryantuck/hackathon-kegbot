@@ -10,11 +10,6 @@ app = Flask(__name__)
 last_pour_val = None
 ultra_sound_val = None
 
-@app.route('/')
-def hello():
-    return 'hello world!'
-
-
 def ultrasoundStuff():
     ultra_sound_val = ultrasound.checkForHuman()
 
