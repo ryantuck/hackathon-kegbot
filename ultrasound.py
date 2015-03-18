@@ -1,43 +1,46 @@
 
 # ultrasound code
 
-import RPi.GPIO as GPIO
+import RPi.GPIO as gpio
 import time
 
-GPIO.setmode(GPIO.BCM)
+gpio.setmode(gpio.BCM)
 
-TRIG=23
-ECHO=24
+trig = 23
+echo = 24
 
 print 'distance measuring in progress'
 
-GPIO.setup(TRIG,GPIO.OUT)
-GPIO.setup(ECHO,GPIO.IN)
+while True:
 
-GPIO.output(TRIG,False)
+    gpio.setup(trig,gpio.OUT)
+    gpio.setup(echo.gpio.IN)
 
-print 'waiting for sensor to settle'
+    gpio.output(trig,False)
 
-time.sleep(2)
+    print 'waiting for sensor to settle'
 
-GPIO.output(TRIG, True)
+    time.sleep(2)
 
-time.sleep(0.0001)
-GPIO.output(TRIG,False)
+    gpio.output(trig,True)
 
-while GPIO.input(ECHO) == 0:
-    pulse_start = time.time()
+    time.sleep(0.0001)
 
-while GPIO.input(ECHO) == 1:
-    pulse_end = time.time()
+    gpio.output(trig,False)
 
-pulse_duration = pulse_end - pulse_start
+    while gpio.input(echo) == 0:
+        pulse_start = time.time()
 
-distance = pulse_duration * 17150
-distance = round(distance,2)
+    while gpio.input(echo) == 1:
+        pulse_end = time.time()
 
-print 'distance: ', distance, 'cm'
+    pulse_duration = pulse_end - pulse_start
 
-GPIO.cleanup()
+    distance = pulse_duration * 17150
+    distance = round(distance,2)
+
+    print 'distance: ', distance, 'cm'
+
+    GPIO.cleanup()
 
 
