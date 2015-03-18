@@ -4,5 +4,13 @@
 </head>
 <body>
 <h2>stuff: <span id="response">{{ ultrasound }}</span></h2>
+<script type="text/javascript">
+jQuery(function doPoll(){
+$.get('/metrics.json', function(data) {
+console.log(data); // process results here
+$("#response").text(data.ultrasound);
+setTimeout(doPoll,1000);
+});
+});</script>
 </body>
 </html>

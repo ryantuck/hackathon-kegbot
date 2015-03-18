@@ -66,8 +66,12 @@ def measure():
 
     return render_template('temp.html', **templateData)
 
-# @app.route("/metrics.json")
-# def metrics_json():
+@app.route("/metrics.json")
+def metrics_json():
+    return {
+        'last_pour': flow_stuff(),
+        'ultrasound': ultrasoundStuff()
+    }
 
 if __name__ == '__main__':
         app.run(host='0.0.0.0', port=80, debug=True)
