@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 total_poured_left = 0
 total_poured_right = 0
-
+beer_count = 0
 
 
 def ultrasoundStuff():
@@ -32,6 +32,7 @@ def tick_right_meter(channel):
 
 def flow_stuff():
     currentTime = int(time.time() * FlowMeter.MS_IN_A_SECOND)
+    global beer_count
     left_pour = 0
     right_pour = 0
     left_beer = left_meter.beverage
@@ -40,6 +41,7 @@ def flow_stuff():
     if left_meter.thisPour > 0.23 and currentTime - left_meter.lastClick > 5000:
         left_pour = left_meter.getFormattedThisPour()
         left_meter.thisPour = 0.0
+        beer_count = beer_count + 1
 
     if right_meter.thisPour > 0.23 and currentTime - right_meter.lastClick > 5000:
         right_pour = right_meter.getFormattedThisPour()
@@ -49,6 +51,7 @@ def flow_stuff():
     global total_poured_right
     total_poured_left += left_pour
     total_poured_right += right_pour
+    beer_count = beer_count + 1
 
     return {left_beer: left_pour, right_beer: right_pour}
 
@@ -76,18 +79,21 @@ def getBestBeer():
 def measure():
 
     templateData = {
-    'last_pour' : flow_stuff(),
-    'ultrasound' : ultrasoundStuff()
+        'last_pour' : flow_stuff(),
+        'ultrasound' : ultrasoundStuff(),
+        'beer_count': beer_count,
+        'best_beer': getBestBeer(),
     }
 
-    return render_template('temp.html', **templateData)
+    return render_template('index.html', **templateData)
 
 @app.route("/metrics.json")
 def metrics_json():
     return jsonify({
         'last_pour': flow_stuff(),
         'ultrasound': ultrasoundStuff(),
-        'best_beer': getBestBeer()
+        'best_beer': getBestBeer(),
+        'beer_count': beer_count
     })
 
 if __name__ == '__main__':
