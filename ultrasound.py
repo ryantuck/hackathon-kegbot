@@ -10,11 +10,12 @@ trig = 23
 echo = 24
 
 print 'distance measuring in progress'
+gpio.setup(trig, gpio.OUT)
+gpio.setup(echo, gpio.IN)
 
 while True:
 
-    gpio.setup(trig, gpio.OUT)
-    gpio.setup(echo, gpio.IN)
+
 
     gpio.output(trig,False)
 
