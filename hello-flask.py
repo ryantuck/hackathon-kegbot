@@ -70,9 +70,9 @@ GPIO.add_event_detect(27, GPIO.RISING, callback=tick_right_meter, bouncetime=20)
 
 def getBestBeer():
     if total_poured_left > total_poured_right:
-        return left_beer.beverage
+        return left_meter.beverage
     else:
-        return right_beer.beverage
+        return right_meter.beverage
 
 
 @app.route("/")
