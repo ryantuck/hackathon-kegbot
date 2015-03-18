@@ -18,14 +18,14 @@ fm2 = FlowMeter('metric', 'root beer')
 
 # Beer, on Pin 23.
 def doAClick(channel):
-  print "Do a click 1 called"
+  print "Left Tap Pouring"
   currentTime = int(time.time() * FlowMeter.MS_IN_A_SECOND)
   if fm.enabled == True:
     fm.update(currentTime)
 
 # Root Beer, on Pin 24.
 def doAClick2(channel):
-  print "Do a click 2 called"
+  print "Right Tap Pouting"
   currentTime = int(time.time() * FlowMeter.MS_IN_A_SECOND)
   if fm2.enabled == True:
     fm2.update(currentTime)
