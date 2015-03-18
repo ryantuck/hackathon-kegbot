@@ -74,6 +74,12 @@ def getBestBeer():
     else:
         return right_meter.beverage
 
+def getWorstBeer():
+    if total_poured_left < total_poured_right:
+        return left_meter.beverage
+    else:
+        return right_meter.beverage
+
 
 @app.route("/")
 def measure():
@@ -83,6 +89,7 @@ def measure():
         'ultrasound' : ultrasoundStuff(),
         'beer_count': beer_count,
         'best_beer': getBestBeer(),
+        'worst_beer': getWorstBeer(),
     }
 
     return render_template('index.html', **templateData)
@@ -93,7 +100,8 @@ def metrics_json():
         'last_pour': flow_stuff(),
         'ultrasound': ultrasoundStuff(),
         'best_beer': getBestBeer(),
-        'beer_count': beer_count
+        'beer_count': beer_count,
+        'worst_beer': getWorstBeer(),
     })
 
 if __name__ == '__main__':

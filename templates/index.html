@@ -25,7 +25,7 @@
 		<div class="row">
 			<div class="dash col-xs-6 col-sm-3">
 				<div id="logo">
-					<img class="hacklogo" src="./img/stkic_white.png" />
+					<img class="hacklogo" src="http://kegbot.local/img/stkic_white.png" />
 				</div>
 			</div>
 	
@@ -59,10 +59,10 @@
 				</div>
 			</div>
 			
-			<div class="dash col-xs-6 col-sm-3">
+			<div id="worst_beer" class="dash col-xs-6 col-sm-3">
 				<div class="stat">
 					<p class="statTitle">Least Popular Beer</p>
-					<p class="statContent">Bud Light</p>
+					<p class="statContent">{{ worst_beer }}</p>
 				</div>
 			</div>
 			
@@ -148,6 +148,7 @@
         $("#occupied.statContent").text(data.ultrasound);
         $("#beer_count.statContent").text(data.beer_count);
         $("#best_beer.statContent").text(data.best_beer);
+        $("#worst_beer.statContent").text(data.worst_beer);
         setTimeout(doPoll,1000);
         });
     });</script>
