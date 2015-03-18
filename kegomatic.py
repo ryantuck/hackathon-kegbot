@@ -9,7 +9,7 @@ from flowmeter import *
 print "Setting up"
 #boardRevision = GPIO.RPI_REVISION
 GPIO.setmode(GPIO.BCM) # use real GPIO numbering
-GPIO.setup(22,GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(17,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(27,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # set up the flow meters
@@ -30,7 +30,7 @@ def doAClick2(channel):
   if fm2.enabled == True:
     fm2.update(currentTime)
 
-GPIO.add_event_detect(22, GPIO.RISING, callback=doAClick, bouncetime=20) # Beer, on Pin 23
+GPIO.add_event_detect(17, GPIO.RISING, callback=doAClick, bouncetime=20) # Beer, on Pin 23
 GPIO.add_event_detect(27, GPIO.RISING, callback=doAClick2, bouncetime=20) # Root Beer, on Pin 24
 
 print "Starting Loop"
