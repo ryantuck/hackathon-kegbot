@@ -15,7 +15,7 @@ class Ultrasound():
         self.echo = 24
 
     # are you still there?
-    def iterate(self):
+    def checkForHuman(self):
 
         gpio.setup(self.trig,gpio.OUT)
         gpio.setup(self.echo.gpio.IN)
