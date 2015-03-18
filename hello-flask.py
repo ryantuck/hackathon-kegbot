@@ -75,10 +75,10 @@ def getBestBeer():
         return right_meter.beverage
 
 def getWorstBeer():
-    if total_poured_left < total_poured_right:
-        return left_meter.beverage
-    else:
+    if total_poured_left > total_poured_right:
         return right_meter.beverage
+    else:
+        return left_meter.beverage
 
 
 @app.route("/")
