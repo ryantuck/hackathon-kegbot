@@ -1,8 +1,4 @@
 #!/usr/bin/python
-import os
-import time
-import math
-import logging
 import RPi.GPIO as GPIO
 from flowmeter import *
 
