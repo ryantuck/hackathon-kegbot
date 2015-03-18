@@ -43,9 +43,11 @@ def flow_stuff():
         #5 sec pause
         if left_meter.thisPour > 0.23 and currentTime - left_meter.lastClick > 5000:
             print left_meter.getFormattedThisPour()
+            left_meter.thisPour = 0.0
 
         if right_meter.thisPour > 0.23 and currentTime - right_meter.lastClick > 5000:
             print right_meter.getFormattedThisPour()
+            right_meter.thisPour = 0.0
 
 
 
