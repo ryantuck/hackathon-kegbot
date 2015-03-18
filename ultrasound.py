@@ -14,6 +14,7 @@ class Ultrasound():
         self.trig = 23
         self.echo = 24
 
+    # are you still there?
     def iterate(self):
 
         gpio.setup(self.trig,gpio.OUT)
@@ -43,6 +44,12 @@ class Ultrasound():
         distance = round(distance,2)
 
         print 'distance: ', distance, 'cm'
+
+        # if there is someone there
+        if distance < 40:
+            return True
+        else:
+            return False
 
 gpio.cleanup()
 
