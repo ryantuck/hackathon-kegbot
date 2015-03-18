@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sorry, the Kitchen is Closed</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="js/Chart.js"></script>
+
+  </head>
+  <body>
+	<div class="container-fluid">
+    
+		<div class="row">
+			<div class="dash col-xs-6 col-sm-3">
+				<div id="logo">
+					<img class="hacklogo" src="img/stkic_white.png" />
+				</div>
+			</div>
+	
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">Most Popular Beer</p>
+					<p class="statContent">Bengali Tiger</p>
+				</div>
+			</div>
+
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">Number of Beers Enjoyed</p>
+					<p class="statContent">42</p>
+				</div>
+			</div>
+
+
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">Beers Tasted</p>
+					<p class="statContent">12.3</p>
+				</div>
+			</div>
+		
+						
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">People in the Kitchen</p>
+					<p class="statContent">8</p>
+				</div>
+			</div>
+			
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">Least Popular Beer</p>
+					<p class="statContent">Bud Light</p>
+				</div>
+			</div>
+			
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">My Favorite Number</p>
+					<p class="statContent">7</p>
+				</div>
+			</div>
+
+
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">Favorite Star Wars Character</p>
+					<p class="statContent">R2-D2</p>
+				</div>
+			</div>
+			
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">A Random Number</p>
+					<p class="statContent">1231242</p>
+				</div>
+			</div>
+
+			<div class="dash col-xs-6 col-sm-3">
+				<div class="stat">
+					<p class="statTitle">Total Kitchen Visits</p>
+					<p class="statContent">4,001</p>
+				</div>
+			</div>
+			<div class="dash col-xs-6 col-sm-3">
+				<div id="canvas-holder" class="stat chart">
+					<p class="statTitle">Random Pie Chart</p>
+					<p class="statContent">
+						<canvas id="chart-area" width="200" height="200"/>
+					</p>
+				</div>
+			</div>
+
+			<script>
+				var pieData = [
+						{
+							value: 300,
+							color:"#414b56",
+							highlight: "#414b56",
+							label: "Warby Dark Blue"
+						},
+						{
+							value: 50,
+							color: "#00a2e1",
+							highlight: "#00a2e1",
+							label: "Green"
+						},
+						{
+							value: 100,
+							color: "#6b7b8c",
+							highlight: "#6b7b8c",
+							label: "Yellow"
+						}
+					];
+					window.onload = function(){
+						var ctx = document.getElementById("chart-area").getContext("2d");
+						window.myPie = new Chart(ctx).Pie(pieData);
+					};
+			</script>
+			
+
+
+
+
+		</div>
+		
+		<div class="row">
+			
+		</div>
+	</div>
+	
+	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

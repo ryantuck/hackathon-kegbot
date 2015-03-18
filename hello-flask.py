@@ -1,5 +1,5 @@
 
-from flask import Flask
+from flask import Flask, render_template
 import threading
 from ultrasound import *
 from flowmeter import *
@@ -19,8 +19,7 @@ def flaskStuff():
 
 
 def ultrasoundStuff():
-    while True:
-        ultrasound.checkForHuman()
+    ultrasound.checkForHuman()
 
 
 def tick_left_meter(channel):
@@ -36,18 +35,23 @@ def tick_right_meter(channel):
     if right_meter.enabled == True:
         right_meter.update(currentTime)
 
+
 def flow_stuff():
-    while True:
-        currentTime = int(time.time() * FlowMeter.MS_IN_A_SECOND)
+    currentTime = int(time.time() * FlowMeter.MS_IN_A_SECOND)
+    left_pour = 0
+    right_pour = 0
+    left_beer = left_meter.beverage
+    right_beer = right_meter.beverage
+    #5 sec pause
+    if left_meter.thisPour > 0.23 and currentTime - left_meter.lastClick > 5000:
+        left_pour = left_meter.getFormattedThisPour()
+        left_meter.thisPour = 0.0
 
-        #5 sec pause
-        if left_meter.thisPour > 0.23 and currentTime - left_meter.lastClick > 5000:
-            print left_meter.getFormattedThisPour()
-            left_meter.thisPour = 0.0
+    if right_meter.thisPour > 0.23 and currentTime - right_meter.lastClick > 5000:
+        right_pour = right_meter.getFormattedThisPour()
+        right_meter.thisPour = 0.0
 
-        if right_meter.thisPour > 0.23 and currentTime - right_meter.lastClick > 5000:
-            print right_meter.getFormattedThisPour()
-            right_meter.thisPour = 0.0
+    return {left_beer: left_pour, right_beer.beverage: right_pour}
 
 
 
@@ -79,6 +83,22 @@ GPIO.add_event_detect(27, GPIO.RISING, callback=tick_right_meter, bouncetime=20)
 flaskThread.start()
 flowThread.start()
 ultrasoundThread.start()
+
+@app.route("/")
+def measure():
+    flow = flow_stuff()
+    ultrasound = {"person": ultrasoundStuff}
+
+    templateData = {
+    'last_pour' : flow,
+    'ultrasound' : ultrasound
+    }
+
+    return render_template('temp.html', **templateData)
+
+# @app.route("/metrics.json")
+# def metrics_json():
+
 
 import time
 while True:
