@@ -20,7 +20,7 @@ def flaskStuff():
 
 def ultrasoundStuff():
     while True:
-        ultrasound.iterate()
+        ultrasound.checkForHuman()
 
 
 def tick_left_meter(channel):
