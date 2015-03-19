@@ -50,8 +50,8 @@ def flow_stuff():
     
     global total_poured_left
     global total_poured_right
-    total_poured_left += left_pour
-    total_poured_right += right_pour
+    total_poured_left = left_pour + total_poured_left
+    total_poured_right = right_pour + total_poured_right
 
     return {left_beer: left_pour, right_beer: right_pour}
 
